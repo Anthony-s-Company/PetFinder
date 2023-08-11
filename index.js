@@ -43,6 +43,11 @@ app.get("/api/v1/pets/:petName", (req, res) => {
 
   // find the pet in the pets array
   const pet = pets.find((pet) => pet.name === petName);
+  if (pet) {
+    res.json(pet); // Sending pet as JSON response
+  } else {
+    res.status(404).json({ message: "Pet not found" });
+  }
 
   // send the pet as a response
   res.send(pet);
